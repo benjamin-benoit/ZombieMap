@@ -1,5 +1,24 @@
 {
-  "devDependencies": {
-    "node": "^12.1.0"
-  }
+	"name": "zombiemapmorm",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "npx babel-node src/main.js",
+		"build": "npx babel src --out-dir lib"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"pg": "^7.8.1"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.2.3",
+		"@babel/core": "^7.4.4",
+		"@babel/node": "^7.2.2",
+		"@babel/plugin-proposal-class-properties": "^7.3.4",
+		"@babel/preset-env": "^7.3.4",
+		"lodash": "^4.17.11"
+	}
 }
