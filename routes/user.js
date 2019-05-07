@@ -29,6 +29,23 @@ api.post("/register", async (req, res) => {
 	}
 });
 
+api.post("/login", (req, res) => {
+	const { nickname, password } = req.body;
+
+	try {
+		User.findOne({ where: { nickname: nickname, password: password } }).then(user => {
+			if (user) {
+				res.status(201).json({ data: { user } });
+			}
+			else {
+				res.status(400).json({ err: "login or password incorrect" });
+			}
+		});
+	} catch (err) {
+		res.status(400).json({ err: err.message });
+	}
+});
+
 api.get("/show", async (req, res) => {
 	const users = await User.findAll();
 	res.status(201).json({ users });
@@ -46,7 +63,7 @@ api.put("/changePassword", async (req, res) => {
 						password: newPassword
 					});
 
-					res.status(201).json({ user });
+					res.status(201).json({ data: { user } });
 				} catch (err) {
 					res.status(400).json({ err: err.message });
 				}
@@ -55,7 +72,7 @@ api.put("/changePassword", async (req, res) => {
 			}
 		}
 		else {
-			res.status(400).json({ err: "User not found"});
+			res.status(400).json({ err: "User not found" });
 		}
 	});
 });
